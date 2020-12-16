@@ -117,4 +117,15 @@ public class IPL_League_Analysis_Test {
         }catch (IPL_League_Exception e){ }
     }
 
+    @Test
+    public void givenIPLRunsData_ShouldReturn_TopBowlingEconomy_ofCricketers() {
+        try{
+            IPL_League ipl_league = new IPL_League();
+            ipl_league.loadIPLWicketsData(IPL_WICKETS_CSV_FILE_PATH);
+            String sortedIPLWicketsData = ipl_league.getTopBowlingEconomyData();
+            WicketsFactSheet[] wicketsCSV = new Gson().fromJson(sortedIPLWicketsData, WicketsFactSheet[].class);
+            System.out.println("Answer found");
+            Assert.assertEquals(4.8, wicketsCSV[0].economy,0.0);
+        }catch (IPL_League_Exception e){ }
+    }
 }
