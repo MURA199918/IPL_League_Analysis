@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="IPL_League_Analysis_Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-12-16T11:44:17" hostname="DESKTOP-J9DM2GE" time="0.374">
+  <properties/>
+  <testcase name="givenIPLRunsData_ShouldReturn_TopBattingAverages_ofCricketers" classname="IPL_League_Analysis_Test" time="0.374"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
