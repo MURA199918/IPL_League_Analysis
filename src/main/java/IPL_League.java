@@ -156,6 +156,31 @@ public class IPL_League {
         return sortedMaximumWicketsDataJson;
     }
 
+    public String getTopBattingAndBowlingAverages_ofCricketers() throws IPL_League_Exception {
+        if(runsIPLList == null || runsIPLList.size() == 0){
+            throw new IPL_League_Exception("No Runs Data", IPL_League_Exception.ExceptionType.NO_IPL_RUNS_DATA);
+        }
+        else if(wicketsIPLList == null || wicketsIPLList.size() == 0){
+            throw new IPL_League_Exception("No Wickets Data", IPL_League_Exception.ExceptionType.NO_IPL_WICKETS_DATA);
+        }
+        Comparator<RunsFactSheet> runsComparator = Comparator.comparing(runs->runs.average);
+        List<RunsFactSheet> list = this.sortIPLRunsandReturn(runsComparator);
+        return null;
+    }
+
+    private List sortIPLRunsandReturn(Comparator<RunsFactSheet> runsComparator) {
+        for(int i=0;i<runsIPLList.size()-1;i++){
+            for(int j=0; j<runsIPLList.size()-1;j++){
+                RunsFactSheet runsData1 = runsIPLList.get(j);
+                RunsFactSheet runsData2 = runsIPLList.get(j+1);
+                if(runsComparator.compare(runsData1,runsData2)<0){
+                    runsIPLList.set(j, runsData2);
+                    runsIPLList.set(j+1, runsData1);
+                }
+            }
+        }
+        return runsIPLList;
+    }
 
     private void sortIPLRuns(Comparator<RunsFactSheet> runsComparator) {
         for(int i=0;i<runsIPLList.size()-1;i++){
