@@ -6,6 +6,7 @@ import org.junit.Test;
 public class IPL_League_Analysis_Test {
 
     private static final String IPL_RUNS_CSV_FILE_PATH = "C:\\Users\\mural\\IdeaProjects\\IPL_League_Analysis\\src\\test\\resources\\IPL2019FactsheetMostRuns.csv";
+    private static final String IPL_WICKETS_CSV_FILE_PATH = "C:\\Users\\mural\\IdeaProjects\\IPL_League_Analysis\\src\\test\\resources\\IPL2019FactsheetMostWkts.csv";
 
 
     @Test
@@ -90,5 +91,17 @@ public class IPL_League_Analysis_Test {
             System.out.println("Answer found");
             Assert.assertEquals("David Warner", runsCSV[0].name);
         }catch (IPL_League_Exception | CSVBuilderException e){ }
+    }
+
+    @Test
+    public void givenIPLRunsData_ShouldReturn_TopBowlingAverages_ofCricketers() {
+        try{
+            IPL_League ipl_league = new IPL_League();
+            ipl_league.loadIPLWicketsData(IPL_WICKETS_CSV_FILE_PATH);
+            String sortedIPLWicketsData = ipl_league.getTopBowlingAverageData();
+            WicketsFactSheet[] wicketsCSV = new Gson().fromJson(sortedIPLWicketsData, WicketsFactSheet[].class);
+            System.out.println("Answer found");
+            Assert.assertEquals(166, wicketsCSV[0].average,0.0);
+        }catch (IPL_League_Exception e){ }
     }
 }

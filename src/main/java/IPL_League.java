@@ -106,6 +106,16 @@ public class IPL_League {
         return sortedMaximumRunsDataJson;
     }
 
+    public String getTopBowlingAverageData() throws IPL_League_Exception {
+        if(wicketsIPLList == null || wicketsIPLList.size() == 0){
+            throw new IPL_League_Exception("No Wickets Data", IPL_League_Exception.ExceptionType.NO_IPL_WICKETS_DATA);
+        }
+        Comparator<WicketsFactSheet> runsComparator = Comparator.comparing(runs->runs.average);
+        this.sortIPLWickets(runsComparator);
+        String sortedBowlingAverageDataJson = new Gson().toJson(wicketsIPLList);
+        return sortedBowlingAverageDataJson;
+    }
+
     private void sortIPLRuns(Comparator<RunsFactSheet> runsComparator) {
         for(int i=0;i<runsIPLList.size()-1;i++){
             for(int j=0; j<runsIPLList.size()-1;j++){
@@ -114,6 +124,19 @@ public class IPL_League {
                 if(runsComparator.compare(runsData1,runsData2)<0){
                     runsIPLList.set(j, runsData2);
                     runsIPLList.set(j+1, runsData1);
+                }
+            }
+        }
+    }
+
+    private void sortIPLWickets(Comparator<WicketsFactSheet> runsComparator) {
+        for(int i=0;i<wicketsIPLList.size()-1;i++){
+            for(int j=0; j<wicketsIPLList.size()-1;j++){
+                WicketsFactSheet wicketsData1 = wicketsIPLList.get(j);
+                WicketsFactSheet wicketsData2 = wicketsIPLList.get(j+1);
+                if(runsComparator.compare(wicketsData1,wicketsData2)<0){
+                    wicketsIPLList.set(j, wicketsData2);
+                    wicketsIPLList.set(j+1, wicketsData1);
                 }
             }
         }
