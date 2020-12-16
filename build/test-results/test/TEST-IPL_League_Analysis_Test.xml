@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="IPL_League_Analysis_Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-12-16T12:15:39" hostname="DESKTOP-J9DM2GE" time="0.371">
+<testsuite name="IPL_League_Analysis_Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-12-16T12:22:06" hostname="DESKTOP-J9DM2GE" time="0.372">
   <properties/>
-  <testcase name="givenIPLRunsData_ShouldReturn_TopFours_ofCricketers" classname="IPL_League_Analysis_Test" time="0.371"/>
+  <testcase name="givenIPLRunsData_ShouldReturn_TopBattingAverages_ofCricketers" classname="IPL_League_Analysis_Test" time="0.372"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

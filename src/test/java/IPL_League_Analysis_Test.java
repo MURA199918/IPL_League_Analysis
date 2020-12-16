@@ -55,4 +55,16 @@ public class IPL_League_Analysis_Test {
             Assert.assertEquals(64, runsCSV[0].fours);
         }catch (IPL_League_Exception | CSVBuilderException e){ }
     }
+
+    @Test
+    public void givenIPLRunsData_ShouldReturn_CricketerWith_BestStrikeRate() {
+        try{
+            IPL_League ipl_league = new IPL_League();
+            ipl_league.loadIPLRunsData(IPL_RUNS_CSV_FILE_PATH);
+            String sortedIPLRunsData = ipl_league.getTopStrikeRateData();
+            RunsFactSheet[] runsCSV = new Gson().fromJson(sortedIPLRunsData, RunsFactSheet[].class);
+            System.out.println("Answer found");
+            Assert.assertEquals("Andre Russell", runsCSV[0].name);
+        }catch (IPL_League_Exception | CSVBuilderException e){ }
+    }
 }
