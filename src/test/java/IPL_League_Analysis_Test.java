@@ -18,4 +18,16 @@ public class IPL_League_Analysis_Test {
             Assert.assertEquals(83.2, runsCSV[0].average,0.0);
         }catch (IPL_League_Exception e){ }
     }
+
+    @Test
+    public void givenIPLRunsData_ShouldReturn_TopStrikeRates_ofCricketers() {
+        try{
+            IPL_League ipl_league = new IPL_League();
+            ipl_league.loadIPLRunsData(IPL_RUNS_CSV_FILE_PATH);
+            String sortedIPLRunsData = ipl_league.getTopStrikeRateData();
+            RunsFactSheet[] runsCSV = new Gson().fromJson(sortedIPLRunsData, RunsFactSheet[].class);
+            System.out.println("Answer found");
+            Assert.assertEquals(204.81, runsCSV[0].strikeRate,0.0);
+        }catch (IPL_League_Exception e){ }
+    }
 }
