@@ -96,6 +96,16 @@ public class IPL_League {
         return sortedFoursDataJson;
     }
 
+    public String getMaximumRuns() throws IPL_League_Exception {
+        if(runsIPLList == null || runsIPLList.size() == 0){
+            throw new IPL_League_Exception("No Runs Data", IPL_League_Exception.ExceptionType.NO_IPL_RUNS_DATA);
+        }
+        Comparator<RunsFactSheet> runsComparator = Comparator.comparing(runs->runs.runs);
+        this.sortIPLRuns(runsComparator);
+        String sortedMaximumRunsDataJson = new Gson().toJson(runsIPLList);
+        return sortedMaximumRunsDataJson;
+    }
+
     private void sortIPLRuns(Comparator<RunsFactSheet> runsComparator) {
         for(int i=0;i<runsIPLList.size()-1;i++){
             for(int j=0; j<runsIPLList.size()-1;j++){

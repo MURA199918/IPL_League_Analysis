@@ -78,6 +78,17 @@ public class IPL_League_Analysis_Test {
             System.out.println("Answer found");
             Assert.assertEquals("MS Dhoni", runsCSV[0].name);
         }catch (IPL_League_Exception | CSVBuilderException e){ }
+    }
 
+    @Test
+    public void givenIPLRunsData_ShouldReturn_CricketersWith_MaximumRuns() {
+        try{
+            IPL_League ipl_league = new IPL_League();
+            ipl_league.loadIPLRunsData(IPL_RUNS_CSV_FILE_PATH);
+            String sortedIPLRunsData = ipl_league.getMaximumRuns();
+            RunsFactSheet[] runsCSV = new Gson().fromJson(sortedIPLRunsData, RunsFactSheet[].class);
+            System.out.println("Answer found");
+            Assert.assertEquals("David Warner", runsCSV[0].name);
+        }catch (IPL_League_Exception | CSVBuilderException e){ }
     }
 }
