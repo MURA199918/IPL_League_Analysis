@@ -134,7 +134,7 @@ public class IPL_League {
             for(int j=0; j<wicketsIPLList.size()-1;j++){
                 WicketsFactSheet wicketsData1 = wicketsIPLList.get(j);
                 WicketsFactSheet wicketsData2 = wicketsIPLList.get(j+1);
-                if(runsComparator.compare(wicketsData1,wicketsData2)<0){
+                if(runsComparator.compare(wicketsData1,wicketsData2)>0){
                     wicketsIPLList.set(j, wicketsData2);
                     wicketsIPLList.set(j+1, wicketsData1);
                 }
