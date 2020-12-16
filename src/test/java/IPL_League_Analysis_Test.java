@@ -152,4 +152,16 @@ public class IPL_League_Analysis_Test {
             Assert.assertEquals("Shivam Dube", wicketsCSV[0].name);
         }catch (IPL_League_Exception e){ }
     }
+
+    @Test
+    public void givenIPLRunsData_ShouldReturn_Bowler0f_MaximumWickets() {
+        try{
+            IPL_League ipl_league = new IPL_League();
+            ipl_league.loadIPLWicketsData(IPL_WICKETS_CSV_FILE_PATH);
+            String sortedIPLWicketsData = ipl_league.getMaximumWicketsData_OfBowling();
+            WicketsFactSheet[] wicketsCSV = new Gson().fromJson(sortedIPLWicketsData, WicketsFactSheet[].class);
+            System.out.println("Answer found");
+            Assert.assertEquals("Imran Tahir", wicketsCSV[0].name);
+        }catch (IPL_League_Exception e){ }
+    }
 }
