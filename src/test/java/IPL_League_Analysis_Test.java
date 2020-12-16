@@ -128,4 +128,16 @@ public class IPL_League_Analysis_Test {
             Assert.assertEquals(4.8, wicketsCSV[0].economy,0.0);
         }catch (IPL_League_Exception e){ }
     }
+
+    @Test
+    public void givenIPLRunsData_ShouldReturn_TopBowlingStrikeRates_WithFoursAndSixes_ofCricketers() {
+        try{
+            IPL_League ipl_league = new IPL_League();
+            ipl_league.loadIPLWicketsData(IPL_WICKETS_CSV_FILE_PATH);
+            String sortedIPLWicketsData = ipl_league.getTopBowlingStrikeRateData_WithFoursAndSixes();
+            WicketsFactSheet[] wicketsCSV = new Gson().fromJson(sortedIPLWicketsData, WicketsFactSheet[].class);
+            System.out.println("Answer found");
+            Assert.assertEquals("Imran Tahir", wicketsCSV[0].name);
+        }catch (IPL_League_Exception e){ }
+    }
 }
