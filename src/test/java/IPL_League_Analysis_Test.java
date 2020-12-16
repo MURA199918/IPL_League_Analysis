@@ -1,4 +1,5 @@
 import com.google.gson.Gson;
+import com.jarfile.CSVBuilderException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ public class IPL_League_Analysis_Test {
             RunsFactSheet[] runsCSV = new Gson().fromJson(sortedIPLRunsData, RunsFactSheet[].class);
             System.out.println("Answer found");
             Assert.assertEquals(83.2, runsCSV[0].average,0.0);
-        }catch (IPL_League_Exception e){ }
+        }catch (IPL_League_Exception | CSVBuilderException e){ }
     }
 
     @Test
@@ -28,6 +29,30 @@ public class IPL_League_Analysis_Test {
             RunsFactSheet[] runsCSV = new Gson().fromJson(sortedIPLRunsData, RunsFactSheet[].class);
             System.out.println("Answer found");
             Assert.assertEquals(204.81, runsCSV[0].strikeRate,0.0);
-        }catch (IPL_League_Exception e){ }
+        }catch (IPL_League_Exception | CSVBuilderException e){ }
+    }
+
+    @Test
+    public void givenIPLRunsData_ShouldReturn_TopSixes_ofCricketers() {
+        try{
+            IPL_League ipl_league = new IPL_League();
+            ipl_league.loadIPLRunsData(IPL_RUNS_CSV_FILE_PATH);
+            String sortedIPLRunsData = ipl_league.getTopSixes();
+            RunsFactSheet[] runsCSV = new Gson().fromJson(sortedIPLRunsData, RunsFactSheet[].class);
+            System.out.println("Answer found");
+            Assert.assertEquals(52, runsCSV[0].sixes);
+        }catch (IPL_League_Exception | CSVBuilderException e){ }
+    }
+
+    @Test
+    public void givenIPLRunsData_ShouldReturn_TopFours_ofCricketers() {
+        try{
+            IPL_League ipl_league = new IPL_League();
+            ipl_league.loadIPLRunsData(IPL_RUNS_CSV_FILE_PATH);
+            String sortedIPLRunsData = ipl_league.getTopSixes();
+            RunsFactSheet[] runsCSV = new Gson().fromJson(sortedIPLRunsData, RunsFactSheet[].class);
+            System.out.println("Answer found");
+            Assert.assertEquals(64, runsCSV[0].fours);
+        }catch (IPL_League_Exception | CSVBuilderException e){ }
     }
 }

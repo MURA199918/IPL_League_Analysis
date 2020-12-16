@@ -1,9 +1,10 @@
-import java.util.List;
-
 import com.google.gson.Gson;
 import com.jarfile.CSVBuilderException;
 import com.jarfile.CSVBuilderFactory;
 import com.jarfile.ICSVBuilder;
+
+import java.util.List;
+
 
 import java.io.IOException;
 import java.io.Reader;
@@ -11,14 +12,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.List;
 import java.util.stream.StreamSupport;
 
 public class IPL_League {
     List<RunsFactSheet> runsIPLList = null;
     List<WicketsFactSheet> wicketsIPLList = null;
 
-    public int loadIPLRunsData(String csvFilePath) throws IPL_League_Exception {
+    public int loadIPLRunsData(String csvFilePath) throws IPL_League_Exception, CSVBuilderException {
         try( Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             runsIPLList = csvBuilder.getCSVFileList(reader, RunsFactSheet.class);
@@ -74,6 +74,26 @@ public class IPL_League {
         this.sortIPLRuns(runsComparator);
         String sortedStrikeRateRunsDataJson = new Gson().toJson(runsIPLList);
         return sortedStrikeRateRunsDataJson;
+    }
+
+    public String getTopSixes() throws IPL_League_Exception {
+        if(runsIPLList == null || runsIPLList.size() == 0){
+            throw new IPL_League_Exception("No Runs Data", IPL_League_Exception.ExceptionType.NO_IPL_RUNS_DATA);
+        }
+        Comparator<RunsFactSheet> runsComparator = Comparator.comparing(runs->runs.sixes);
+        this.sortIPLRuns(runsComparator);
+        String sortedSixesDataJson = new Gson().toJson(runsIPLList);
+        return sortedSixesDataJson;
+    }
+
+    public String getTopFours() throws IPL_League_Exception {
+        if(runsIPLList == null || runsIPLList.size() == 0){
+            throw new IPL_League_Exception("No Runs Data", IPL_League_Exception.ExceptionType.NO_IPL_RUNS_DATA);
+        }
+        Comparator<RunsFactSheet> runsComparator = Comparator.comparing(runs->runs.fours);
+        this.sortIPLRuns(runsComparator);
+        String sortedFoursDataJson = new Gson().toJson(runsIPLList);
+        return sortedFoursDataJson;
     }
 
     private void sortIPLRuns(Comparator<RunsFactSheet> runsComparator) {
