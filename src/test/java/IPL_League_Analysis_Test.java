@@ -28,7 +28,7 @@ public class IPL_League_Analysis_Test {
             String sortedIPLRunsData = ipl_league.getTopStrikeRateData();
             RunsFactSheet[] runsCSV = new Gson().fromJson(sortedIPLRunsData, RunsFactSheet[].class);
             System.out.println("Answer found");
-            Assert.assertEquals(204.81, runsCSV[0].strikeRate,0.0);
+            Assert.assertEquals(333.33, runsCSV[0].strikeRate,0.0);
         }catch (IPL_League_Exception | CSVBuilderException e){ }
     }
 
@@ -64,7 +64,7 @@ public class IPL_League_Analysis_Test {
             String sortedIPLRunsData = ipl_league.getTopStrikeRateData();
             RunsFactSheet[] runsCSV = new Gson().fromJson(sortedIPLRunsData, RunsFactSheet[].class);
             System.out.println("Answer found");
-            Assert.assertEquals("Andre Russell", runsCSV[0].name);
+            Assert.assertEquals("Ishant Sharma", runsCSV[0].name);
         }catch (IPL_League_Exception | CSVBuilderException e){ }
     }
 
