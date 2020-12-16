@@ -116,6 +116,16 @@ public class IPL_League {
         return sortedBowlingAverageDataJson;
     }
 
+    public String getTopBowlingStrikeRateData() throws IPL_League_Exception {
+        if(wicketsIPLList == null || wicketsIPLList.size() == 0){
+            throw new IPL_League_Exception("No Wickets Data", IPL_League_Exception.ExceptionType.NO_IPL_WICKETS_DATA);
+        }
+        Comparator<WicketsFactSheet> runsComparator = Comparator.comparing(runs->runs.strikeRate);
+        this.sortIPLWickets(runsComparator);
+        String sortedStrikeRateWicketsDataJson = new Gson().toJson(wicketsIPLList);
+        return sortedStrikeRateWicketsDataJson;
+    }
+
     private void sortIPLRuns(Comparator<RunsFactSheet> runsComparator) {
         for(int i=0;i<runsIPLList.size()-1;i++){
             for(int j=0; j<runsIPLList.size()-1;j++){

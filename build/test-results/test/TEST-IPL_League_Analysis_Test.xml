@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="IPL_League_Analysis_Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-12-16T13:34:47" hostname="DESKTOP-J9DM2GE" time="0.36">
+<testsuite name="IPL_League_Analysis_Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-12-16T13:44:02" hostname="DESKTOP-J9DM2GE" time="0.393">
   <properties/>
-  <testcase name="givenIPLRunsData_ShouldReturn_TopBowlingAverages_ofCricketers" classname="IPL_League_Analysis_Test" time="0.36"/>
+  <testcase name="givenIPLRunsData_ShouldReturn_TopBowlingStrikeRates_ofCricketers" classname="IPL_League_Analysis_Test" time="0.393"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
+  <system-err><![CDATA[Exception in thread "pool-1-thread-4" java.lang.RuntimeException: com.opencsv.exceptions.CsvDataTypeMismatchException: Conversion of - to double failed.
+]]></system-err>
 </testsuite>

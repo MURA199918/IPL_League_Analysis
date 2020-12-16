@@ -104,4 +104,17 @@ public class IPL_League_Analysis_Test {
             Assert.assertEquals(166, wicketsCSV[0].average,0.0);
         }catch (IPL_League_Exception e){ }
     }
+
+    @Test
+    public void givenIPLRunsData_ShouldReturn_TopBowlingStrikeRates_ofCricketers() {
+        try{
+            IPL_League ipl_league = new IPL_League();
+            ipl_league.loadIPLWicketsData(IPL_WICKETS_CSV_FILE_PATH);
+            String sortedIPLWicketsData = ipl_league.getTopBowlingStrikeRateData();
+            WicketsFactSheet[] wicketsCSV = new Gson().fromJson(sortedIPLWicketsData, WicketsFactSheet[].class);
+            System.out.println("Answer found");
+            Assert.assertEquals(120, wicketsCSV[0].strikeRate,0.0);
+        }catch (IPL_League_Exception e){ }
+    }
+
 }
